@@ -1,4 +1,7 @@
-export class TokenBuffer {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TokenBuffer = void 0;
+class TokenBuffer {
     lexer;
     tokenProcessor;
     history = [];
@@ -77,6 +80,7 @@ export class TokenBuffer {
         return new TokenIterator(this);
     }
 }
+exports.TokenBuffer = TokenBuffer;
 class TokenIterator {
     buffer;
     constructor(buffer) {

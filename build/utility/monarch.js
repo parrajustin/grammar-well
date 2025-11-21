@@ -1,4 +1,7 @@
-export function CreateMonarchTokenizer(lexer) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateMonarchTokenizer = CreateMonarchTokenizer;
+function CreateMonarchTokenizer(lexer) {
     const tokenizer = {};
     const { start, states } = lexer;
     for (const name in states) {

@@ -1,4 +1,7 @@
-export function TypescriptFormat(generator) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TypescriptFormat = TypescriptFormat;
+function TypescriptFormat(generator) {
     const exportName = generator.name();
     return `// Generated automatically by Grammar-Well, version ${generator.state.version} 
 // https://github.com/0x6563/grammar-well

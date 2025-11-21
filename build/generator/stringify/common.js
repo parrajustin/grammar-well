@@ -1,4 +1,7 @@
-export class CommonGenerator {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CommonGenerator = void 0;
+class CommonGenerator {
     state;
     constructor(state) {
         this.state = state;
@@ -80,4 +83,5 @@ export class CommonGenerator {
         return !(typeof s === 'string' || 'rule' in s);
     }
 }
+exports.CommonGenerator = CommonGenerator;
 //# sourceMappingURL=common.js.map

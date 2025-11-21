@@ -1,4 +1,7 @@
-export class ParserUtility {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ParserUtility = void 0;
+class ParserUtility {
     static SymbolMatchesToken(symbol, token) {
         if (typeof symbol === 'string')
             throw 'Attempted to match token against non-terminal';
@@ -23,4 +26,5 @@ export class ParserUtility {
         return data;
     }
 }
+exports.ParserUtility = ParserUtility;
 //# sourceMappingURL=parsing.js.map

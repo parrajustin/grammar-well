@@ -1,4 +1,7 @@
-export class StatefulLexer {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StatefulLexer = void 0;
+class StatefulLexer {
     start;
     states = Object.create(null);
     buffer;
@@ -168,4 +171,5 @@ export class StatefulLexer {
         throw new Error('Cannot find token type for matched text');
     }
 }
+exports.StatefulLexer = StatefulLexer;
 //# sourceMappingURL=stateful-lexer.js.map

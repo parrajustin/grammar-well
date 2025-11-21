@@ -1,5 +1,8 @@
-import version from "../version.json" with { type: "json" };
-export class GeneratorState {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GeneratorState = void 0;
+const version = { "version": "2.0.7" };
+class GeneratorState {
     grammar;
     lexer;
     lifecycle = {};
@@ -74,4 +77,5 @@ export class GeneratorState {
         };
     }
 }
+exports.GeneratorState = GeneratorState;
 //# sourceMappingURL=state.js.map

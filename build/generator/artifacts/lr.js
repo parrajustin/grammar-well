@@ -1,10 +1,13 @@
-import { Collection, GeneratorSymbolCollection } from "../../utility/general.js";
-import { CommonGenerator } from "../stringify/common.js";
-export class LRParseTableBuilder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LRParseTableBuilder = void 0;
+const general_js_1 = require("../../utility/general.js");
+const common_js_1 = require("../stringify/common.js");
+class LRParseTableBuilder {
     generator;
-    rules = new Collection();
+    rules = new general_js_1.Collection();
     table = Object.create(null);
-    symbols = new GeneratorSymbolCollection();
+    symbols = new general_js_1.GeneratorSymbolCollection();
     constructor(generator) {
         this.generator = generator;
         const augmented = { name: Symbol(), symbols: [{ rule: generator.state.grammar.start }] };
@@ -33,23 +36,24 @@ export class LRParseTableBuilder {
         for (const key in this.table) {
             map[key] = this.stringifyState(this.table[key].export(), depth + 1);
         }
-        return CommonGenerator.JSON(map, depth);
+        return common_js_1.CommonGenerator.JSON(map, depth);
     }
     stringifyState(state, depth = 0) {
-        return CommonGenerator.JSON({
+        return common_js_1.CommonGenerator.JSON({
             actions: state.actions.map(v => this.stringifyNext(v, depth + 1)),
-            goto: CommonGenerator.JSON(state.goto, depth + 1),
+            goto: common_js_1.CommonGenerator.JSON(state.goto, depth + 1),
             reduce: state.reduce ? this.generator.grammarRule(state.reduce) : null,
             isFinal: state.isFinal ? 'true' : 'false'
         }, depth);
     }
     stringifyNext(next, depth) {
-        return CommonGenerator.JSON({
-            symbol: CommonGenerator.SerializeSymbol(next.symbol),
+        return common_js_1.CommonGenerator.JSON({
+            symbol: common_js_1.CommonGenerator.SerializeSymbol(next.symbol),
             next: JSON.stringify(next.next)
         }, -1);
     }
 }
+exports.LRParseTableBuilder = LRParseTableBuilder;
 class StateBuilder {
     collection;
     isFinal = false;
@@ -91,7 +95,7 @@ class StateBuilder {
             return;
         visited.add(symbol);
         const stateItem = { rule, dot: dot + 1 };
-        if (CommonGenerator.SymbolIsTerminal(symbol)) {
+        if (common_js_1.CommonGenerator.SymbolIsTerminal(symbol)) {
             const id = this.collection.symbols.encode(symbol);
             this.outputs.action[id] = this.outputs.action[id] || [];
             this.outputs.action[id].push(stateItem);

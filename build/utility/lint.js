@@ -1,4 +1,7 @@
-export function LintGrammarSymbols(grammar) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LintGrammarSymbols = LintGrammarSymbols;
+function LintGrammarSymbols(grammar) {
     const unused = new Set();
     const { rules, start } = grammar;
     for (const rule in rules) {

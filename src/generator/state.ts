@@ -1,5 +1,6 @@
 import { GeneratorGrammarProductionRule, GeneratorLexerConfig, GeneratorLexerState, GeneratorStateGrammar } from "../typings/index.js";
-import version from "../version.json" with { type: "json" };
+// import version from "../version.json";
+const version = {"version":"2.0.7"};
 export class GeneratorState {
     grammar?: GeneratorStateGrammar;
     lexer?: GeneratorLexerConfig;

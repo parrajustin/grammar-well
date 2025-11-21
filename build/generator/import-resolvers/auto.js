@@ -1,11 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AutoImportResolver = void 0;
+const filesystem_js_1 = require("./filesystem.js");
+const browser_js_1 = require("./browser.js");
 let resolver;
 if (typeof process && process?.release?.name?.search(/node|io\.js/) >= 0) {
-    const { FileSystemResolver } = await import("./filesystem.js");
-    resolver = FileSystemResolver;
+    resolver = filesystem_js_1.FileSystemResolver;
 }
 else {
-    const { BrowserImportResolver } = await import("./browser.js");
-    resolver = BrowserImportResolver;
+    resolver = browser_js_1.BrowserImportResolver;
 }
-export const AutoImportResolver = resolver;
+exports.AutoImportResolver = resolver;
 //# sourceMappingURL=auto.js.map

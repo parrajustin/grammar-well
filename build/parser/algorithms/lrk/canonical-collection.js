@@ -1,11 +1,14 @@
-import { ParserUtility } from "../../../utility/parsing.js";
-import { BiMap } from "./bimap.js";
-import { ClosureBuilder } from "./closure.js";
-export class CanonicalCollection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CanonicalCollection = void 0;
+const parsing_js_1 = require("../../../utility/parsing.js");
+const bimap_js_1 = require("./bimap.js");
+const closure_js_1 = require("./closure.js");
+class CanonicalCollection {
     grammar;
     states = new Map();
-    rules = new BiMap();
-    terminals = new BiMap();
+    rules = new bimap_js_1.BiMap();
+    terminals = new bimap_js_1.BiMap();
     closure;
     constructor(grammar) {
         this.grammar = grammar;
@@ -14,7 +17,7 @@ export class CanonicalCollection {
             symbols: [this.grammar.start]
         };
         this.grammar['rules'][augmented.name] = [augmented];
-        this.closure = new ClosureBuilder(this.grammar);
+        this.closure = new closure_js_1.ClosureBuilder(this.grammar);
         this.rules.id(augmented);
         this.addState(this.grammar['rules'][augmented.name][0], 0);
         this.linkStates('0.0');
@@ -48,7 +51,7 @@ export class CanonicalCollection {
             for (const { rule, dot } of state.items) {
                 const symbol = rule.symbols[dot];
                 const itemStateId = this.getStateId(rule, dot + 1);
-                if (ParserUtility.SymbolIsTerminal(symbol) && typeof symbol != 'symbol') {
+                if (parsing_js_1.ParserUtility.SymbolIsTerminal(symbol) && typeof symbol != 'symbol') {
                     state.actions.set(symbol, itemStateId);
                 }
                 else {
@@ -66,4 +69,5 @@ export class CanonicalCollection {
         return this.rules.id(rule) + '.' + dot;
     }
 }
+exports.CanonicalCollection = CanonicalCollection;
 //# sourceMappingURL=canonical-collection.js.map

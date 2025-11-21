@@ -1,4 +1,7 @@
-export class CharacterLexer {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CharacterLexer = void 0;
+class CharacterLexer {
     buffer = '';
     $indexOffset = 0;
     $index = -1;
@@ -65,4 +68,5 @@ export class CharacterLexer {
         this.$line = 0;
     }
 }
+exports.CharacterLexer = CharacterLexer;
 //# sourceMappingURL=character-lexer.js.map

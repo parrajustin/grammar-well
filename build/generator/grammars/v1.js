@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class grammar {
     state = {};
     artifacts = {
@@ -611,5 +613,5 @@ class grammar {
     };
     constructor() { }
 }
-export default grammar;
+exports.default = grammar;
 //# sourceMappingURL=v1.js.map

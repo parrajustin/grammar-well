@@ -1,4 +1,9 @@
-export class Collection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Matrix = exports.GeneratorSymbolCollection = exports.Collection = void 0;
+exports.Flatten = Flatten;
+exports.Unflatten = Unflatten;
+class Collection {
     categorized = {};
     uncategorized = new Map();
     items = [];
@@ -41,7 +46,8 @@ export class Collection {
         return this.uncategorized.get(ref);
     }
 }
-export class GeneratorSymbolCollection extends Collection {
+exports.Collection = Collection;
+class GeneratorSymbolCollection extends Collection {
     categorized = {
         nonTerminal: {},
         literalI: {},
@@ -66,7 +72,8 @@ export class GeneratorSymbolCollection extends Collection {
         }
     }
 }
-export class Matrix {
+exports.GeneratorSymbolCollection = GeneratorSymbolCollection;
+class Matrix {
     initial;
     $x = 0;
     $y = 0;
@@ -108,7 +115,8 @@ export class Matrix {
         return Array.from({ length }, (typeof initial == 'function' ? initial : () => initial));
     }
 }
-export function Flatten(obj) {
+exports.Matrix = Matrix;
+function Flatten(obj) {
     const collection = new Collection();
     const $null = Symbol();
     function Traverse(src) {
@@ -148,7 +156,7 @@ export function Flatten(obj) {
     collection.redirect($null, null);
     return collection.items;
 }
-export function Unflatten(items) {
+function Unflatten(items) {
     const visited = new Set();
     function Traverse(id) {
         if (visited.has(id)) {

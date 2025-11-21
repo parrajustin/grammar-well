@@ -1,4 +1,8 @@
-export function CJSOutput(generator) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CJSOutput = CJSOutput;
+exports.ESMOutput = ESMOutput;
+function CJSOutput(generator) {
     const exportName = generator.name();
     return `${Generate(generator)}
 
@@ -8,7 +12,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     window.${exportName} = ${exportName};
 }`;
 }
-export function ESMOutput(generator) {
+function ESMOutput(generator) {
     return `${Generate(generator)}\n\nexport default ${generator.name()};`;
 }
 function Generate(generator) {

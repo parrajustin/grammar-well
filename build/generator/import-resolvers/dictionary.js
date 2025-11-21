@@ -1,4 +1,7 @@
-export class DictionaryResolver {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DictionaryResolver = void 0;
+class DictionaryResolver {
     files;
     constructor(files) {
         this.files = files;
@@ -12,4 +15,5 @@ export class DictionaryResolver {
         return this.files[path];
     }
 }
+exports.DictionaryResolver = DictionaryResolver;
 //# sourceMappingURL=dictionary.js.map

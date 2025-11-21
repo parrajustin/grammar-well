@@ -1,5 +1,8 @@
-import { CommonGenerator } from "../stringify/common.js";
-export class LexerArtifact {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LexerArtifact = void 0;
+const common_js_1 = require("../stringify/common.js");
+class LexerArtifact {
     lexer;
     resolved = new Set();
     resolving = new Set();
@@ -11,7 +14,7 @@ export class LexerArtifact {
             return null;
         if (typeof this.lexer === 'string')
             return this.lexer;
-        return CommonGenerator.JSON({
+        return common_js_1.CommonGenerator.JSON({
             start: JSON.stringify(this.lexer.start),
             states: this.lexerConfigStates(this.lexer.states, depth + 1)
         }, depth);
@@ -21,25 +24,25 @@ export class LexerArtifact {
         const map = {};
         for (const key in states) {
             const state = states[key];
-            map[key] = CommonGenerator.JSON({
+            map[key] = common_js_1.CommonGenerator.JSON({
                 unmatched: state.unmatched ? this.lexerConfigStateRule(state.unmatched) : null,
                 rules: this.lexerConfigStateRules(state.rules, depth + 2),
                 regex: CompileRegExp(key, state)
             }, depth + 1);
         }
-        return CommonGenerator.JSON(map, depth);
+        return common_js_1.CommonGenerator.JSON(map, depth);
     }
     lexerConfigStateRules(rules, depth) {
         const ary = rules.map(rule => {
             if ('import' in rule)
-                return CommonGenerator.JSON({ import: JSON.stringify(rule.import) }, -1);
+                return common_js_1.CommonGenerator.JSON({ import: JSON.stringify(rule.import) }, -1);
             return this.lexerConfigStateRule(rule);
         });
-        return CommonGenerator.JSON(ary, depth);
+        return common_js_1.CommonGenerator.JSON(ary, depth);
     }
     lexerConfigStateRule(rule) {
-        return CommonGenerator.JSON({
-            when: 'when' in rule ? CommonGenerator.SerializeSymbol(rule.when) : null,
+        return common_js_1.CommonGenerator.JSON({
+            when: 'when' in rule ? common_js_1.CommonGenerator.SerializeSymbol(rule.when) : null,
             before: JSON.stringify(rule.before),
             skip: JSON.stringify(rule.skip),
             type: JSON.stringify(rule.type),
@@ -97,6 +100,7 @@ export class LexerArtifact {
         this.resolved.add(name);
     }
 }
+exports.LexerArtifact = LexerArtifact;
 class UniqueRules {
     regexps = new Set();
     strings = new Set();

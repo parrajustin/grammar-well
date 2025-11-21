@@ -1,5 +1,8 @@
-import { CommonGenerator } from "../stringify/common.js";
-export class BasicGrammarTable {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BasicGrammarTable = void 0;
+const common_js_1 = require("../stringify/common.js");
+class BasicGrammarTable {
     generator;
     constructor(generator) {
         this.generator = generator;
@@ -8,7 +11,7 @@ export class BasicGrammarTable {
         if (!this.generator.state.grammar) {
             return null;
         }
-        return CommonGenerator.JSON({
+        return common_js_1.CommonGenerator.JSON({
             start: JSON.stringify(this.generator.state.grammar.start),
             rules: this.stringifyGrammarRules(depth + 1)
         }, depth);
@@ -18,7 +21,8 @@ export class BasicGrammarTable {
         for (const rule in this.generator.state.grammar.rules) {
             map[rule] = this.generator.state.grammar.rules[rule].map(v => this.generator.grammarRule(v));
         }
-        return CommonGenerator.JSON(map, depth);
+        return common_js_1.CommonGenerator.JSON(map, depth);
     }
 }
+exports.BasicGrammarTable = BasicGrammarTable;
 //# sourceMappingURL=basic.js.map
